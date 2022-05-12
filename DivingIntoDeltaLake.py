@@ -257,7 +257,7 @@ new_data.printSchema()
 
 # Uncommenting this cell will lead to an error because the schemas don't match.
 # Attempt to write data with new column to Delta Lake table
-new_data.write.format("delta").mode("append").saveAsTable("loans_delta")
+# new_data.write.format("delta").mode("append").saveAsTable("loans_delta")
 
 # COMMAND ----------
 
@@ -276,6 +276,12 @@ new_data.write.format("delta").mode("append").option("mergeSchema", "true").save
 # COMMAND ----------
 
 # MAGIC %sql SELECT * FROM loans_delta WHERE loan_id IN (99997, 99998)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC # $ Business Value Proposition
+# MAGIC Schema Management is a key component to the Master Data Management. The Paper Company listed earlier, used this feature to great effect to reduce multiple copies of data and reduce costs of legacy master data management processes.  
 
 # COMMAND ----------
 
@@ -375,6 +381,12 @@ spark.sql("SELECT COUNT(*) FROM loans_delta VERSION AS OF 0").show()
 # MAGIC DELETE FROM loans_delta WHERE loan_id=4420;
 # MAGIC -- Confirm the user's data was deleted
 # MAGIC SELECT * FROM loans_delta WHERE loan_id=4420
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC # $ Business Value Proposition
+# MAGIC Delete functionality with GDPR and CCPA compliance played a pivotal role in decreasing fines to the Technology Manufacturing Company based out of Texas.  
 
 # COMMAND ----------
 
@@ -481,6 +493,12 @@ spark.sql("SELECT * FROM merge_table").show()
 # COMMAND ----------
 
 # MAGIC %sql OPTIMIZE loans_delta ZORDER BY addr_state
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC # $ Business Value Proposition
+# MAGIC Small file optimization and table caching in Databricks allowed for long running classic data warehousing operations to be completed in hours instead of days. Ultimately reducing time to insights from one month to one day.
 
 # COMMAND ----------
 
